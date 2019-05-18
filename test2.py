@@ -20,7 +20,7 @@ dataloader = torch.utils.data.DataLoader( dataset = dataset, batch_size=1, shuff
 X, y = next(iter(dataloader))
 print(X.shape)
 
-for j in range(0 , 1)
+for j in range(0 , 1):
 	if isinstance(y['annotation']['object'],list) == True:
     	for i in y['annotation']['object']:
         	print('l' , i)
