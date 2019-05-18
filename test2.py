@@ -21,12 +21,14 @@ X, y = next(iter(dataloader))
 print(X.shape)
 
 for j in range(0 , 1):
- if isinstance(y['annotation']['object'],list) == True:
-  for i in y['annotation']['object']:
-    print('l' , i)
- else:
-  for i in y['annotation']['object'].keys():
-    print('k', i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
+	if isinstance(y['annotation']['object'],list) == True:
+		if y['annotation']['object']['name'] == 'car' :
+			for i in y['annotation']['object']:
+				print('l' , i)
+	else:
+		if y['annotation']['object']['name'] == 'car' :
+			for i in y['annotation']['object'].keys():
+				print('k', i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
 
 #for X,y in iter(dataloader):
 #    print(X.shape)
