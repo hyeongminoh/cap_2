@@ -17,15 +17,15 @@ dataset = datasets.VOCDetection("/data2/ohm/datasets", year='2012', image_set='t
 
 dataloader = torch.utils.data.DataLoader( dataset = dataset, batch_size=1, shuffle=True, num_workers=1)
 
-#X, y = next(iter(dataloader))
-#print(X.shape)
+X, y = next(iter(dataloader))
+print(X.shape)
 
-#if isinstance(y['annotation']['object'],list) == True:
-#    for i in y['annotation']['object']:
-#        print(i)
-#else:
-#    for i in y['annotation']['object'].keys():
-#        print(i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
+if isinstance(y['annotation']['object'],list) == True:
+    for i in y['annotation']['object']:
+        print(i)
+else:
+    for i in y['annotation']['object'].keys():
+        print(i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
 
-for X,y in iter(dataloader):
-    print(X.shape)
+#for X,y in iter(dataloader):
+#    print(X.shape)
