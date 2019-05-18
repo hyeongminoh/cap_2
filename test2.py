@@ -27,6 +27,5 @@ dataloader = torch.utils.data.DataLoader( dataset = dataset, batch_size=1, shuff
 #    for i in y['annotation']['object'].keys():
 #        print(i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
 
-for batch_ndx, sample in enumerate(dataloader):
-    print(sample.inp.is_pinned())
-    print(sample.tgt.is_pinned())
+for X,y in iter(dataloader):
+    print(X.shape)
