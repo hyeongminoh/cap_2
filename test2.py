@@ -12,7 +12,7 @@ transform = transforms.Compose([transforms.Resize((240,240)),
                                 transforms.ToTensor(),
                                 transforms.Normalize((0.1307,), (0.3081,))])
 
-dataset = datasets.VOCDetection("../datasets", year='2012', image_set='trainval', 
+dataset = datasets.VOCDetection("/data2/ohm/datasets", year='2012', image_set='trainval', 
                                 download=False, transform=transform)
 
 dataloader = torch.utils.data.DataLoader( dataset = dataset, batch_size=1, shuffle=True, num_workers=1)
