@@ -168,15 +168,3 @@ with torch.no_grad():
 
 for i in range(10):
     print('\nAccuracy of %5s : %2d %%' % (classes[i], 100 * class_correct[i] / class_total[i]))
-© 2019 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Help
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
