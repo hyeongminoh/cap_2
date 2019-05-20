@@ -25,11 +25,11 @@ for X, y in iter(dataloader):
 	if isinstance(y['annotation']['object'],list) == True:
 		if y['annotation']['object'][0] == 'car' :
 			for i in y['annotation']['object']:
-			print('l' , i)
+				print('l' , i)
 	else:
 		if y['annotation']['object']['name'] == 'car' :
-		for i in y['annotation']['object'].keys():
-			print('k', i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
+			for i in y['annotation']['object'].keys():
+				print('k', i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
 
 #for X,y in iter(dataloader):
 #    print(X.shape)
