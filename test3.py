@@ -1,21 +1,4 @@
-Skip to content
- 
-Search or jump to…
 
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@hyeongminoh 
-1
-1 1 trilliwon/pytorch-examples
- Code  Pull requests 0  Insights
-pytorch-examples/Convolutional Neural Network/classification/cifar10-tutorial.py
-@trilliwon trilliwon Thu May 24 18:46:25 KST 2018
-89b6ea8 on 24 May 2018
-Executable File  169 lines (123 sloc)  4.79 KB
-    
 # -*- coding: utf-8 -*-
 import torch
 import torch.nn as nn
