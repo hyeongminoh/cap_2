@@ -21,15 +21,15 @@ dataloader = torch.utils.data.DataLoader( dataset = dataset, batch_size=1, shuff
 #print(X.shape)
 
 for X, y in iter(dataloader):
-	print(X.shape)
+	#print(X.shape)
 	if isinstance(y['annotation']['object'],list) == True:
-		if y['annotation']['object'][0] == 'car' :
-			for i in y['annotation']['object']:
-				print('l' , i)
+		#if y['annotation']['object'][0] == 'car' :
+		for i in y['annotation']['object']:
+			print('l' , i)
 	else:
-		if y['annotation']['object']['name'] == 'car' :
-			for i in y['annotation']['object'].keys():
-				print('k', i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
+		#if y['annotation']['object']['name'] == 'car' :
+		for i in y['annotation']['object'].keys():
+			print('k', i, type(y['annotation']['object'][i]), y['annotation']['object'][i])
 
 #for X,y in iter(dataloader):
 #    print(X.shape)
