@@ -10,12 +10,12 @@ import torch.optim as optim
 # for image
 import matplotlib.pyplot as plt
 import numpy as np
-import timeit
+import time
 
 # Data
-
+start_vect=time.time()
 print('===> Loading Data...')
-start = timeit.default_timer()
+
 """
 - 데이터를 torch Tensor로 바꾸고 Normalization을 위해 transform.Compose 를 사용합니다.
 - Compose 는 여러 transform 들을 chaining 합니다. 즉 여러 transform 진행합니다.
@@ -175,4 +175,4 @@ for i in range(10):
     print('\nAccuracy of %5s : %2d %%' % (classes[i], 100 * class_correct[i] / class_total[i]))
 
 stop = timeit.default_timer()
-print('Time: ' + stop - start)
+print("training Runtime: %0.2f Minutes"%((time.time() - start_vect)/60))
