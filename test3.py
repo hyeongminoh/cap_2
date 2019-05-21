@@ -101,7 +101,7 @@ GPU 사용하기
 print('\n===> Training Start')
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
-net.to(device)
+net.to(self.device)
 if torch.cuda.device_count() > 1:
     print('\n===> Training on GPU!')
     net = nn.DataParallel(net)
@@ -116,7 +116,7 @@ for epoch in range(epochs):
     for i, data in enumerate(trainloader, 0):
         # get the inputs
         inputs, labels = data
-        inputs, labels = inputs.to(device), labels.to(device)
+        inputs, labels = inputs.to(self.device), labels.to(self.device)
         
         # zero the parameter gradients
         optimizer.zero_grad()
