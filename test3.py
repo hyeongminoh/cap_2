@@ -143,11 +143,6 @@ print('\n===> Finished Training...')
 savePath = "/data2/ohm/models"
 torch.save(model.state_dict(), savePath)
 
-
-출처: https://jangjy.tistory.com/317 [살다보니..]
-
-
-
 # Test
 correct = 0
 total = 0
