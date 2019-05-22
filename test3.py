@@ -141,7 +141,7 @@ print('\n===> Finished Training...')
 
 #Save
 savePath = "/data2/ohm/models"
-torch.save(model.state_dict(), savePath)
+torch.save(net.state_dict(), savePath)
 
 # Test
 correct = 0
