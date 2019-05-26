@@ -23,6 +23,10 @@ NRM  = transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010))
 TT   = transforms.ToTensor()
 TPIL = transforms.ToPILImage()
 
+transform = transforms.Compose([transforms.Resize(224),
+                                transforms.ToTensor(),
+                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
 # Transforms object for trainset with augmentation
 transform_with_aug = transforms.Compose([TPIL, RC, RHF, TT, NRM])
 # Transforms object for testset with NO augmentation
@@ -30,8 +34,8 @@ transform_no_aug   = transforms.Compose([TT, NRM])
 
 # Downloading/Louding CIFAR10 data
 
-trainset  = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=True , download=True)#, transform = transform_with_aug)
-testset   = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=False, download=True)#, transform = transform_no_aug)
+trainset  = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=True , download=True, transform = transform)
+testset   = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=False, download=True, transform = transform)
 classDict = {'plane':0, 'car':1, 'bird':2, 'cat':3, 'deer':4, 'dog':5, 'frog':6, 'horse':7, 'ship':8, 'truck':9}
 
 # Separating trainset/testset data/label
@@ -107,9 +111,7 @@ print('\n===> Loading Data...')
 - Compose 는 여러 transform 들을 chaining 합니다. 즉 여러 transform 진행합니다.
 """
 
-transform = transforms.Compose([transforms.Resize(224),
-                                transforms.ToTensor(),
-                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+
 
 
 car_trainset = DatasetMaker(
@@ -122,7 +124,7 @@ car_testset  = DatasetMaker(
         transform_no_aug
     )
 
-kwargs = {'num_workers': 2, 'pin_memory': False}
+kwargs = {'num_workers': 4, 'pin_memory': False}
 
 trainloader   = DataLoader(car_trainset, batch_size=32, shuffle=True , **kwargs)
 testloader    = DataLoader(car_testset , batch_size=32, shuffle=False, **kwargs)
@@ -167,7 +169,7 @@ for epoch in range(epochs):
         inputs, labels = data
         inputs, labels = inputs.to(device), labels.to(device)
         
-        # zero the parameter gradients
+        # zero the parameter gradientsx
         optimizer.zero_grad()
 
         # forward + backward + optimize
