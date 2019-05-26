@@ -113,7 +113,7 @@ transform = transforms.Compose([transforms.Resize(224),
 
 
 car_trainset = DatasetMaker(
-        [ Select_CIFAR10_Classes.get_class_i(x_train, y_train, classDict['car'])],
+        [get_class_i(x_train, y_train, classDict['car'])],
         transform_with_aug
     )
 
