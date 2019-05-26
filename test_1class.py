@@ -126,8 +126,8 @@ car_testset  = DatasetMaker(
 
 kwargs = {'num_workers': 4, 'pin_memory': False}
 
-trainloader   = DataLoader(car_trainset, batch_size=32, shuffle=True , **kwargs)
-testloader    = DataLoader(car_testset , batch_size=32, shuffle=False, **kwargs)
+trainloader   = DataLoader(car_trainset, batch_size=32, shuffle=True ,  num_workers=2)
+testloader    = DataLoader(car_testset , batch_size=32, shuffle=False,  num_workers=2)
 
 
 
