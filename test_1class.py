@@ -28,13 +28,13 @@ transform = transforms.Compose([transforms.Resize(224),
 
 
 car_trainset = Select_CIFAR10_Classes.DatasetMaker(
-        [ Select_CIFAR10_Classes.get_class_i(x_train, y_train, classDict['car'])],
-        transform_with_aug
+        [ Select_CIFAR10_Classes.get_class_i(Select_CIFAR10_Classes.x_train, Select_CIFAR10_Classes.y_train, classDict['car'])],
+        Select_CIFAR10_Classes.transform_with_aug
     )
 
 car_testset  = Select_CIFAR10_Classes.DatasetMaker(
-        [ Select_CIFAR10_Classes.get_class_i(x_test , y_test , classDict['car'])],
-        transform_no_aug
+        [ Select_CIFAR10_Classes.get_class_i(Select_CIFAR10_Classes.x_test , Select_CIFAR10_Classes.y_test , classDict['car'])],
+        Select_CIFAR10_Classes.transform_no_aug
     )
 
 kwargs = {'num_workers': 2, 'pin_memory': False}
