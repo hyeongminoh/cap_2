@@ -2,8 +2,6 @@ import os
 import sys
 import tarfile
 import collections
-import torch
-import numpy as np
 from .vision import VisionDataset
 
 if sys.version_info[0] == 2:
