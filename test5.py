@@ -31,7 +31,7 @@ for file in os.listdir(ann_filepath):
     lines_id_start = lines[:]
     lines_id_end = lines[:]
  
-    Classes1 = '\t\t<name>car</name>\n' #Write a few classes to write a few classes, I only need person
+    classes1 = '\t\t<name>car</name>\n' #Write a few classes to write a few classes, I only need person
     #classes2 = '\t\t<name>motorbike</name>\n'
     #classes3 = '\t\t<name>bus</name>\n'
     #classes4 = '\t\t<name>car</name>\n'
@@ -61,7 +61,7 @@ for file in os.listdir(ann_filepath):
                     names['block%d' % k].append(lines[a + o])
                 break
         i += 1
-        #print(names['block%d' % k])
+        print(names['block%d' % k])
  
  
          #xml 
@@ -76,18 +76,7 @@ for file in os.listdir(ann_filepath):
         if classes1 in names['block%d' % k]:
             a += 1
             string_start += names['block%d' % k]
-        #if classes2 in names['block%d' % k]:
-            a += 1
-            string_start += names['block%d' % k]
-        #if classes3 in names['block%d' % k]:
-            a += 1
-            string_start += names['block%d' % k]
-        #if classes4 in names['block%d' % k]:
-            a += 1
-            string_start += names['block%d' % k]
-        #if classes5 in names['block%d' % k]:
-            a += 1
-            string_start += names['block%d' % k]   
+        
     string_start += string_end
     for c in range(0, len(string_start)):
         fp_w.write(string_start[c])
