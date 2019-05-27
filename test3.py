@@ -30,11 +30,11 @@ CIFAR10 training data를 ./data 에 다운로드 하고 tranfrom 을 진행합�
 - [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader)
 - DataLoader 는 iterator를 반환합니다.
 """
-trainset = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=True, download=True, transform=transform)
+trainset = torchvision.datasets.CIFAR10(root='/data2/ohm/cap_2/datasets', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2)
 
 # test data 를 다운로드 합니다.
-testset = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=False, download=True, transform=transform)
+testset = torchvision.datasets.CIFAR10(root='/data2/ohm/cap_2/datasets', train=False, download=True, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=4, shuffle=False, num_workers=2)
 
 
@@ -140,7 +140,7 @@ print('\n===> Finished Training...')
 
 
 #Save
-savePath = "/data2/ohm/models"
+savePath = "/data2/ohm/cap_2/models"
 torch.save(net.state_dict(), savePath)
 
 # Test

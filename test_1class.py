@@ -34,8 +34,8 @@ transform_no_aug   = transforms.Compose([TT, NRM])
 
 # Downloading/Louding CIFAR10 data
 
-trainset  = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=True , download=True, transform = transform)
-testset   = torchvision.datasets.CIFAR10(root='/data2/ohm/datasets/CIFAR10', train=False, download=True, transform = transform)
+trainset  = torchvision.datasets.CIFAR10(root='/data2/ohm/cap_2/datasets', train=True , download=True, transform = transform)
+testset   = torchvision.datasets.CIFAR10(root='/data2/ohm/cap_2/datasets', train=False, download=True, transform = transform)
 classDict = {'plane':0, 'car':1, 'bird':2, 'cat':3, 'deer':4, 'dog':5, 'frog':6, 'horse':7, 'ship':8, 'truck':9}
 
 # Separating trainset/testset data/label

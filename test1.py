@@ -34,16 +34,12 @@ trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, 
 
 
 
-classes = ('aeroplane', 'bicycle', 'bird', 'boat',
-                     'bottle', 'bus', 'car', 'cat', 'chair',
-                     'cow', 'diningtable', 'dog', 'horse',
-                     'motorbike', 'person', 'pottedplant',
-                     'sheep', 'sofa', 'train', 'tvmonitor')
+classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
 
 
 
-print('===> Building Model - squeezenet - ...')
-net = models.squeezenet1_0(pretrained=True)
+print('===> Building Model - ResNet18 - ...')
+net = models.resnet18()
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
