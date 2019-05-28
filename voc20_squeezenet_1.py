@@ -29,18 +29,9 @@ testset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image
 testloader = torch.utils.data.DataLoader(testset, batch_size=32, shuffle=False, num_workers=2)
 
 
-# 클래스들은 뭐, (날아라 비행기, 아우디 r8, 날아라 병아리 아니고 벌드, 귀여운 고양이, 등 10개 입니다.)
-classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship', 'truck')
-
-
 # Model
 
 print('===> Building Model - squeezenet1_0 - ...')
-"""
-- Cross Entropy loss 함수를 사용합니다.
-- stochastic gradient descent 를 사용합니다.
-- [optim.SGD](https://pytorch.org/docs/stable/optim.html#torch.optim.SGD)
-"""
 
 net = models.squeezenet1_0(pretrained=True)
 criterion = nn.CrossEntropyLoss()
@@ -112,24 +103,9 @@ with torch.no_grad():
         total += labels.size(0)
         correct += (predicted == labels).sum().item()
 
-print('\nAccuracy of the network on the 10000 test images: %d %%' % (100 * correct / total))
+print('\nAccuracy of the network on the test images: %d %%' % (100 * correct / total))
 
 
-class_correct = list(0. for i in range(10))
-class_total = list(0. for i in range(10))
-
-with torch.no_grad():
-    for data in testloader:
-        images, labels = data
-        images = images.to(device)
-        labels = labels.to(device)
-        outputs = net(images)
-        _, predicted = torch.max(outputs, 1)
-        c = (predicted == labels).squeeze()
-        for i in range(4):
-            label = labels[i]
-            class_correct[label] += c[i].item()
-            class_total[label] += 1
 
 
 print("training Runtime: %0.2f Minutes"%((time.time() - start_vect)/60))
