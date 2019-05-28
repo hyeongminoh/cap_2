@@ -24,7 +24,6 @@ trainset = datasets.VOCDetection("/data/datasets", year='2012', image_set='train
 
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=32, shuffle=True, num_workers=2)
 
-# test data 를 다운로드 합니다.
 testset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=False, transform=transform)
 testloader = torch.utils.data.DataLoader(testset, batch_size=32, shuffle=False, num_workers=2)
