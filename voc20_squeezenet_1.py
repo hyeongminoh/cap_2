@@ -5,6 +5,7 @@ import torchvision
 import torchvision.transforms as transforms
 import torchvision.models as models
 import torch.optim as optim
+from torchvision import datasets, transforms
 
 # for image
 import matplotlib.pyplot as plt
@@ -19,12 +20,12 @@ transform = transforms.Compose([transforms.Resize((240,240)),
                                 transforms.ToTensor(),
                                 transforms.Normalize((0.1307,), (0.3081,))])
 
-trainset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
+trainset = datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=False, transform=transform)
 
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=32, shuffle=True, num_workers=2)
 
-testset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
+testset = datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=False, transform=transform)
 
 testloader = torch.utils.data.DataLoader(testset, batch_size=32, shuffle=False, num_workers=2)
