@@ -16,20 +16,10 @@ import time
 start_vect=time.time()
 print('===> Loading Data...')
 
-"""
-- 데이터를 torch Tensor로 바꾸고 Normalization을 위해 transform.Compose 를 사용합니다.
-- Compose 는 여러 transform 들을 chaining 합니다. 즉 여러 transform 진행합니다.
-"""
-
 transform = transforms.Compose([transforms.Resize(224),
                                 transforms.ToTensor(),
                                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
-"""
-CIFAR10 training data를 ./data 에 다운로드 하고 tranfrom 을 진행합니다.
-- [torch.utils.data.DataLoader](https://pytorch.org/docs/stable/data.html#torch.utils.data.DataLoader)
-- DataLoader 는 iterator를 반환합니다.
-"""
 trainset = torchvision.datasets.CIFAR10(root='/data2/ohm/cap_2/datasets', train=True, download=True, transform=transform)
 trainloader = torch.utils.data.DataLoader(trainset, batch_size=4, shuffle=True, num_workers=2)
 
@@ -45,58 +35,17 @@ classes = ('plane', 'car', 'bird', 'cat', 'deer', 'dog', 'frog', 'horse', 'ship'
 # Model
 
 print('===> Building Model - squeezenet1_0 - ...')
-"""
-- Cross Entropy loss 함수를 사용합니다.
-- stochastic gradient descent 를 사용합니다.
-- [optim.SGD](https://pytorch.org/docs/stable/optim.html#torch.optim.SGD)
-"""
+
 
 net = models.squeezenet1_0(pretrained=True)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 
-# Test before training
-
-"""
-그냥 한번 테스트 
-"""
-
-print('===> Testing before training...')
-# batch size 만큼 이미지를 가져옵니다.
-data = iter(trainloader).next()
-
-inputs, labels = data
-
-# print(', '.join('%7s' % classes[labels[j]] for j in range(4)))
-print('input size: ', inputs.size())
-
-outputs = net(inputs)
-loss = criterion(outputs, labels)
-
-print('output size: ', outputs.size())
-print('loss: ', loss.item())
-
-
-"""
-이미지 보기
-"""
-def imshow(img):
-    img = img / 2 + 0.5     # unnormalize
-    npimg = img.numpy()     # numpy vector로 바꾸기
-    plt.imshow(np.transpose(npimg, (1, 2, 0)))
-
-# [make_grid](https://pytorch.org/docs/stable/torchvision/utils.html#torchvision.utils.make_grid)
-# imshow(torchvision.utils.make_grid(inputs))
-
-print(', '.join('%7s' % classes[labels[j]] for j in range(4)))
 
 
 # Training
 
-"""
-GPU 사용하기
-"""
 
 print('\n===> Training Start')
 
