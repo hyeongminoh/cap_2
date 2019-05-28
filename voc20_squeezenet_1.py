@@ -1,11 +1,9 @@
-
 import torch
 import torch.nn as nn
 import torchvision
 import torchvision.transforms as transforms
 import torchvision.models as models
 import torch.optim as optim
-from torchvision import datasets, transforms
 
 # for image
 import matplotlib.pyplot as plt
