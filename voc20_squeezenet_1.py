@@ -47,29 +47,6 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 
-# Test before training
-
-"""
-그냥 한번 테스트 
-"""
-
-print('===> Testing before training...')
-# batch size 만큼 이미지를 가져옵니다.
-data = iter(trainloader).next()
-
-inputs, labels = data
-
-# print(', '.join('%7s' % classes[labels[j]] for j in range(4)))
-print('input size: ', inputs.size())
-
-outputs = net(inputs)
-loss = criterion(outputs, labels)
-
-print('output size: ', outputs.size())
-print('loss: ', loss.item())
-
-
-
 
 # Training
 
