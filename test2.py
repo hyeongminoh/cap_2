@@ -19,7 +19,7 @@ dataloader = torch.utils.data.DataLoader( dataset = dataset, batch_size=1, shuff
 
 X, y = next(iter(dataloader))
 print(X.shape)
-print y
+print (y)
 
 
 
