@@ -4,9 +4,9 @@
 import os
 import shutil
 ann_filepath='/datasets/VOCdevkit/VOC2012/Annotations/' #Note to change to your own address
-img_filepath='/data/datasets/VOCdevkit/VOC2012/JPEGImages/' #Note to change to your own address
-img_savepath='/data/datasets/VOCdevkit/VOC2012/JPEGImages_ssd/' #Note to change to your own address
-ann_savepath='/data/datasets/VOCdevkit/VOC2012/Annotations_ssd/' #Note to change to your own address
+img_filepath='/datasets/VOCdevkit/VOC2012/JPEGImages/' #Note to change to your own address
+img_savepath='/datasets/VOCdevkit/VOC2012/JPEGImages_ssd/' #Note to change to your own address
+ann_savepath='/datasets/VOCdevkit/VOC2012/Annotations_ssd/' #Note to change to your own address
 if not os.path.exists(img_savepath):
     os.mkdir(img_savepath)
  
