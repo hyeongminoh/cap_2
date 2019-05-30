@@ -14,7 +14,7 @@ import time
 
 print('===> Loading Data...')
 
-transform = transforms.Compose([transforms.Resize((240,240)),
+transform = transforms.Compose([transforms.Resize((60,60)),
                                 transforms.ToTensor(),
                                 transforms.Normalize((0.1307,), (0.3081,))])
 
@@ -61,6 +61,7 @@ device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print(device)
 
 net.to(device)
+
 if torch.cuda.device_count() > 1:
     print('\n===> Training on GPU!')
     net = nn.DataParallel(net)
