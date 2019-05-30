@@ -11,12 +11,12 @@ import numpy as np
 import time
 
 # Data
-start_vect=time.time()
+
 print('===> Loading Data...')
 
 transform = transforms.Compose([transforms.Resize((240,240)),
                                 transforms.ToTensor(),
-                                transforms.Normalize((0.1307,), (0.3081,))])
+                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
 trainset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
@@ -37,7 +37,16 @@ net = models.squeezenet1_0(pretrained=True)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
-
+def make_label(labels):
+    if isinstance(labels['annotation']['object'],list) == True:
+        for label_object in labels['annotation']['object']:
+            if(label_object['name'] == ['car']):
+                return torch.tensor([1])
+    else:
+        dict_object = labels['annotation']['object']
+        if(dict_object['name'] == ['car']):
+                return torch.tensor([1])
+    return torch.tensor([0])
 
 # Training
 
@@ -46,6 +55,7 @@ GPU 사용하기
 """
 
 print('\n===> Training Start')
+start_vect=time.time()
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print(device)
@@ -64,14 +74,15 @@ for epoch in range(epochs):
     for i,data in enumerate(trainloader, 0):
         # get the inputs
         inputs, labels = data
-        inputs, labels = inputs.to(device), labels.to(device)
+        real_label = make_label(labels)
+        inputs, labels = inputs.to(device), real_label.to(device)
         
         # zero the parameter gradients
         optimizer.zero_grad()
 
         # forward + backward + optimize
         outputs = net(inputs)
-        loss = criterion(outputs, labels)
+        loss = criterion(outputs, real_label)
         loss.backward()
         optimizer.step()
 
@@ -86,6 +97,8 @@ for epoch in range(epochs):
 print('\n===> Finished Training...')
 
 
+print("\n===> Training Runtime: %0.2f Minutes"%((time.time() - start_vect)/60))
+
 #Save
 savePath = "/data2/ohm/cap_2/models"
 torch.save(net.state_dict(), savePath)
@@ -96,16 +109,15 @@ total = 0
 with torch.no_grad():
     for data in testloader:
         images, labels = data
+        real_label = make_label(labels)
         images = images.to(device)
-        labels = labels.to(device)
+        real_label = real_label.to(device)
         outputs = net(images)
         _, predicted = torch.max(outputs.data, 1)
-        total += labels.size(0)
-        correct += (predicted == labels).sum().item()
+        total += real_label.size(0)
+        correct += (predicted == real_label).sum().item()
 
 print('\nAccuracy of the network on the test images: %d %%' % (100 * correct / total))
 
 
 
-
-print("training Runtime: %0.2f Minutes"%((time.time() - start_vect)/60))
