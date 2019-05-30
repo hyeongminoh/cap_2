@@ -51,7 +51,9 @@ print('\n===> Training Start')
 
 device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print(device)
+
 net.to(device)
+
 if torch.cuda.device_count() > 1:
     print('\n===> Training on GPU!')
     net = nn.DataParallel(net)
