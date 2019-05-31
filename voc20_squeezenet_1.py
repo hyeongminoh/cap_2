@@ -38,15 +38,15 @@ criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
 def make_label(labels):
-    if isinstance(labels['annotation']['object'],list) == True:
-        for label_object in labels['annotation']['object']:
-            if(label_object['name'] == ['car']):
-                return torch.tensor([1])
-    else:
-        dict_object = labels['annotation']['object']
-        if(dict_object['name'] == ['car']):
-                return torch.tensor([1])
-    return torch.tensor([0])
+        if isinstance(labels['annotation']['object'],list) == True:
+            for label_object in labels['annotation']['object']:
+                if(label_object['name'] == ['car']):
+                    return torch.tensor([1])
+        else:
+            dict_object = labels['annotation']['object']
+            if(dict_object['name'] == ['car']):
+                    return torch.tensor([1])
+        return torch.tensor([0])
 
 # Training
 
@@ -67,7 +67,7 @@ if torch.cuda.device_count() > 1:
     net = nn.DataParallel(net)
 
 
-epochs = 5 # dataset을 여러번 사용해 트레이닝을 시킵니다.
+epochs = 10 # dataset을 여러번 사용해 트레이닝을 시킵니다.
 
 for epoch in range(epochs):
     print('\n===> epoch %d' % epoch)
@@ -102,13 +102,14 @@ print('\n===> Finished Training...')
 print("\n===> Training Runtime: %0.2f Minutes"%((time.time() - start_vect)/60))
 
 #Save
-savePath = "/data2/ohm/cap_2/models"
+savePath = "/models"
 torch.save(net.state_dict(), savePath)
 
 # Test
 print('\n===> Testing...')
 correct = 0
 total = 0
+
 with torch.no_grad():
     for data in testloader:
         images, labels = data
