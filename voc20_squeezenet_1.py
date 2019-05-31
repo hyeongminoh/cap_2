@@ -102,7 +102,7 @@ print('\n===> Finished Training...')
 print("\n===> Training Runtime: %0.2f Minutes"%((time.time() - start_vect)/60))
 
 #Save
-savePath = "/models"
+savePath = "data/models"
 torch.save(net.state_dict(), savePath)
 
 # Test
