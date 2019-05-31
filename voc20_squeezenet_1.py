@@ -14,7 +14,7 @@ import time
 
 print('===> Loading Data...')
 
-transform = transforms.Compose([transforms.Resize((240,240)),
+transform = transforms.Compose([transforms.Resize(224),
                                 transforms.ToTensor(),
                                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
 
