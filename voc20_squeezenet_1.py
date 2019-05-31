@@ -21,12 +21,12 @@ transform = transforms.Compose([transforms.Resize(224),
 trainset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
 
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=1)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=32, shuffle=True, num_workers=2)
 
 testset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
 
-testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=1)
+testloader = torch.utils.data.DataLoader(testset, batch_size=32, shuffle=False, num_workers=2)
 
 
 # Model
@@ -67,7 +67,7 @@ if torch.cuda.device_count() > 1:
     net = nn.DataParallel(net)
 
 
-epochs = 2 # dataset을 여러번 사용해 트레이닝을 시킵니다.
+epochs = 5 # dataset을 여러번 사용해 트레이닝을 시킵니다.
 
 for epoch in range(epochs):
     print('\n===> epoch %d' % epoch)
@@ -106,6 +106,7 @@ savePath = "/data2/ohm/cap_2/models"
 torch.save(net.state_dict(), savePath)
 
 # Test
+print('\n===> Testing...')
 correct = 0
 total = 0
 with torch.no_grad():
