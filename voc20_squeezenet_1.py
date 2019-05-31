@@ -77,7 +77,7 @@ for epoch in range(epochs):
         # get the inputs
         inputs, labels = data
         real_label = make_label(labels)
-        inputs, labels = inputs.to(device), real_label.to(device)
+        inputs, real_label = inputs.to(device), real_label.to(device)
         
         # zero the parameter gradients
         optimizer.zero_grad()
