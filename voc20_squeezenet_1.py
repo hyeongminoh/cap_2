@@ -67,7 +67,7 @@ if torch.cuda.device_count() > 1:
     net = nn.DataParallel(net)
 
 
-epochs = 10 # dataset을 여러번 사용해 트레이닝을 시킵니다.
+epochs = 5 # dataset을 여러번 사용해 트레이닝을 시킵니다.
 
 for epoch in range(epochs):
     print('\n===> epoch %d' % epoch)
