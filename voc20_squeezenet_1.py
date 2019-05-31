@@ -73,7 +73,7 @@ for epoch in range(epochs):
     print('\n===> epoch %d' % epoch)
     running_loss = 0.0
 
-    for i,data in enumerate(trainloader, 0):
+    for i,data in enumerate(trainloader):
         # get the inputs
         inputs, labels = data
         real_label = make_label(labels)
