@@ -21,19 +21,19 @@ transform = transforms.Compose([transforms.Resize(224),
 trainset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
 
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=1)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=2)
 
 testset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
 
-testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=1)
+testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=2)
 
 
 # Model
 
 print('===> Building Model - squeezenet1_0 - ...')
 
-net = models.squeezenet1_0(pretrained=True)
+net = models.squeezenet1_1(pretrained=True)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
