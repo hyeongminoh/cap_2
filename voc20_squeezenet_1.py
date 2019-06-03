@@ -57,7 +57,7 @@ GPU 사용하기
 print('\n===> Training Start')
 start_vect=time.time()
 
-device = torch.device('cuda:4' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
 print(device)
 
 net.to(device)
