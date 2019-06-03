@@ -31,9 +31,9 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, n
 
 # Model
 
-print('===> Building Model - squeezenet1_0 - ...')
+print('===> Building Model - alexnet - ...')
 
-net = models.squeezenet1_0(pretrained=True)
+net = models.alexnet(pretrained=True)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
@@ -67,7 +67,7 @@ if torch.cuda.device_count() > 1:
     net = nn.DataParallel(net)
 
 
-epochs = 5 # dataset을 여러번 사용해 트레이닝을 시킵니다.
+epochs = 3 # dataset을 여러번 사용해 트레이닝을 시킵니다.
 
 for epoch in range(epochs):
     print('\n===> epoch %d' % epoch)
