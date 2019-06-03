@@ -21,19 +21,19 @@ transform = transforms.Compose([transforms.Resize(224),
 trainset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
 
-trainloader = torch.utils.data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=2)
+trainloader = torch.utils.data.DataLoader(trainset, batch_size=1, shuffle=True, num_workers=0)
 
 testset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
 
-testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=2)
+testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, num_workers=0)
 
 
 # Model
 
 print('===> Building Model - squeezenet1_0 - ...')
 
-net = models.squeezenet1_0(pretrained=True, progress=True)
+net = models.squeezenet1_0(pretrained=True)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
@@ -57,7 +57,7 @@ GPU 사용하기
 print('\n===> Training Start')
 start_vect=time.time()
 
-device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+device = torch.device('cuda:4' if torch.cuda.is_available() else 'cpu')
 print(device)
 
 net.to(device)
