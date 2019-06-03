@@ -7,7 +7,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.init as init
-from .utils import load_state_dict_from_url
+
 
 
 # In[3]:
