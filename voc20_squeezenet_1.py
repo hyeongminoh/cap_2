@@ -10,13 +10,16 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 
+import squeezenet_1
+
 # Data
 
 print('===> Loading Data...')
 
-transform = transforms.Compose([transforms.Resize(224),
+transform = transforms.Compose([transforms.Grayscale(num_output_channels=1),
+                                transforms.Resize((240,240)),
                                 transforms.ToTensor(),
-                                transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))])
+                                transforms.Normalize([0.5], [0.5])])
 
 trainset = torchvision.datasets.VOCDetection("/data/datasets", year='2012', image_set='trainval', 
                                 download=True, transform=transform)
@@ -31,9 +34,9 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, n
 
 # Model
 
-print('===> Building Model - alexnet - ...')
+print('===> Building Model - 1channel_squeezenet1_0 - ...')
 
-net = models.alexnet(pretrained=True)
+net = squeezenet_1.squeezenet1_0(pretrained=True)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
