@@ -50,7 +50,7 @@ class MySqueezeNet(nn.Module):
             nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),
             #Fire(256, 32, 128, 128),
             Fire(256, 48, 192, 192),
-            Fire(384, 48, 192, 192),
+            #Fire(384, 48, 192, 192),
             Fire(384, 64, 256, 256),
             nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),
             Fire(512, 64, 256, 256),
