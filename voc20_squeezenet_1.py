@@ -66,7 +66,7 @@ print(device)
 
 net.to(device)
 
-#if torch.cuda.device_count() > 1:
+if torch.cuda.device_count() > 1:
     print('\n===> Training on GPU!')
 #    net = nn.DataParallel(net)
 
