@@ -37,7 +37,7 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, n
 print('===> Building Model - 1channel_squeezenet1_0 - ...')
 os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1, 2, 3'
 net = models.squeezenet1_0(pretrained=False)
-net = nn.DataParallel(net, output_device=3)
+#net = nn.DataParallel(net, output_device=3)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
