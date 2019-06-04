@@ -45,7 +45,7 @@ class MySqueezeNet(nn.Module):
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),
             Fire(96, 16, 64, 64),
-            Fire(128, 16, 64, 64),
+            #Fire(128, 16, 64, 64),
             Fire(128, 32, 128, 128),
             nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),
             #Fire(256, 32, 128, 128),
