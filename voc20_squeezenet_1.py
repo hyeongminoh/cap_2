@@ -36,7 +36,7 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, n
 
 print('===> Building Model - 1channel_squeezenet1_0 - ...')
 
-net = squeezenet_1.squeezenet1_0(pretrained=True)
+net = models.squeezenet1_0(pretrained=flase)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
