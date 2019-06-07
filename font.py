@@ -70,10 +70,10 @@ if __name__ == "__main__":
     print('\n===> Training Start')
 
     device = torch.device('cuda:0' if torch.cuda.is_available() else 'cpu')
+    print(device)
     net.to(device)
     if torch.cuda.device_count() > 1:
         print('\n===> Training on GPU!')
-        net = nn.DataParallel(net)
 
     # Training
     epochs = 1 # dataset을 여러번 사용해 트레이닝을 시킵니다.
@@ -85,7 +85,8 @@ if __name__ == "__main__":
         for i, data in enumerate(train_loader, 0):
             # get the inputs
             inputs, labels = data
-        
+            inputs, labels = inputs.to(device), labels.to(device)
+
             # zero the parameter gradients
             optimizer.zero_grad()
 
@@ -111,6 +112,8 @@ if __name__ == "__main__":
         for data in test_loader:
             images, labels = data
             outputs = net(images)
+            images = images.to(device)
+            labels = labels.to(device)
             print(outputs.data)
             _, predicted = torch.max(outputs.data, 1)
             print(predicted[0])
