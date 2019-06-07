@@ -189,10 +189,10 @@ with torch.no_grad():
         outputs = net(images)
         _, predicted = torch.max(outputs.data, 1)
         total += real_label.size(0)
-        print('predicted: ',predicted)
-        print('real_label', real_label)
         correct += (predicted == real_label).sum().item()   
 
+print(correct)
+print(total)
 print('\nAccuracy of the network on the test images: %d %%' % (100 * correct / total))
 
 

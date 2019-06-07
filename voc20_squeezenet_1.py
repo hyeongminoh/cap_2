@@ -121,6 +121,9 @@ with torch.no_grad():
         total += real_label.size(0)
         correct += (predicted == real_label).sum().item()
 
+print(correct)
+print(total)
+
 print('\nAccuracy of the network on the test images: %d %%' % (100 * correct / total))
 
 
