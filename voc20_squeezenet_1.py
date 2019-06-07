@@ -67,7 +67,7 @@ net.to(device)
 
 if torch.cuda.device_count() > 1:
     print('\n===> Training on GPU!')
-    net = nn.DataParallel(net)
+    #net = nn.DataParallel(net)
 
 
 epochs = 3 # dataset을 여러번 사용해 트레이닝을 시킵니다.
