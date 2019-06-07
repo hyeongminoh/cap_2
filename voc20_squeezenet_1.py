@@ -7,9 +7,6 @@ import torch.optim as optim
 import os
 # for image
 import matplotlib.pyplot as plt
-import numpy as np
-import time
-
 import squeezenet_1
 
 # Data
@@ -35,6 +32,9 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, n
 
 print('===> Building Model - 1channel_squeezenet1_0 - ...')
 os.environ["CUDA_VISIBLE_DEVICES"] = '0, 1, 2, 3'
+import numpy as np
+import time
+
 net = models.squeezenet1_0(pretrained=False)
 net = nn.DataParallel(net, output_device=3)
 criterion = nn.CrossEntropyLoss()
