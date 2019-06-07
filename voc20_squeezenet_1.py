@@ -34,7 +34,7 @@ print('===> Building Model - alexnet - ...')
 import numpy as np
 import time
 
-net = models.alexnet(pretrained=False)
+net = models.squeezenet1_0(pretrained=False)
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=0.001, momentum=0.9)
 
