@@ -30,7 +30,7 @@ testloader = torch.utils.data.DataLoader(testset, batch_size=1, shuffle=False, n
 
 # Model
 
-print('===> Building Model - alexnet - ...')
+print('===> Building Model - squeezenet1_0 - ...')
 import numpy as np
 import time
 
