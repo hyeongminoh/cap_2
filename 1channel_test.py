@@ -36,22 +36,22 @@ class Fire(nn.Module):
 
 class MySqueezeNet(nn.Module):
 
-    def __init__(self, version='1_0', num_classes=1000):
+    def __init__(self, version='1_0', num_classes=1):
         super(MySqueezeNet, self).__init__()
         self.num_classes = num_classes
         
         self.features = nn.Sequential(
-            nn.Conv2d(1, 46, kernel_size=7, stride=2),
+            nn.Conv2d(1, 96, kernel_size=7, stride=2),
             nn.ReLU(inplace=True),
             nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),
-            Fire(46, 16, 64, 64),
+            Fire(96, 16, 64, 64),
             #Fire(128, 16, 64, 64),
-            Fire(64, 32, 128, 128),
+            Fire(128, 32, 128, 128),
             #nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),
             #Fire(256, 32, 128, 128),
-            Fire(128, 48, 192, 192),
+            Fire(256, 48, 192, 192),
             #Fire(384, 48, 192, 192),
-            Fire(256, 64, 256, 256),
+            Fire(384, 64, 256, 256),
             nn.MaxPool2d(kernel_size=3, stride=2, ceil_mode=True),
             Fire(512, 64, 256, 256),
         )
