@@ -36,7 +36,7 @@ class Fire(nn.Module):
 
 class MySqueezeNet(nn.Module):
 
-    def __init__(self, version='1_0', num_classes=1):
+    def __init__(self, version='1_0', num_classes=1000):
         super(MySqueezeNet, self).__init__()
         self.num_classes = num_classes
         
